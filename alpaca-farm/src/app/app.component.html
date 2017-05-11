@@ -1,0 +1,18 @@
+<h1>{{title}}</h1>
+
+<div class="container">
+  <app-text-input
+    (textEntered)="addAlpaca($event)"
+    ></app-text-input>
+
+  <div *ngFor="
+    let alpaca of alpacas;
+    let i = index;
+    let isEven = even">
+    <app-alpaca
+      [alpacaId]="i + 1"
+      [alpaca]="alpaca"
+      [background]="isEven ? '#fff' : '#ccf'"
+      ></app-alpaca>
+  </div>
+</div>
