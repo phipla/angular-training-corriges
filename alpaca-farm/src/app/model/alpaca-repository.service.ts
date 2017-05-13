@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
-import { Alpaca } from './alpaca'
+import { Alpaca } from './alpaca';
 
 interface AlpacaData {
   name: string;
@@ -11,9 +12,7 @@ interface AlpacaData {
 }
 
 function createAlpaca(data: AlpacaData) {
-  return new Alpaca(
-    data.name, data.age, data.height,
-  );
+  return new Alpaca(data);
 }
 
 @Injectable()
