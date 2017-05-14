@@ -1,0 +1,27 @@
+<h2>{{ alpaca?.name }}</h2>
+
+{{ alpaca | json }}
+
+<form #f="ngForm" (ngSubmit)="save(f.value)">
+    <label for="inputName">
+        Nom
+    </label>
+    <input id="inputName" name="name" ngModel>
+    <label for="inputNotes">
+        Description
+    </label>
+    <textarea id="inputNotes" name="notes" ngModel></textarea>
+    <button type="submit">
+        Enregistrer
+    </button>
+</form>
+
+<a routerLink="/">Retour</a>
+<a [routerLink]="['/alpaca', 1]">Aller au 1</a>
+
+<p>Plus de détails</p>
+
+<a routerLink="detail-1">Détails 1</a>
+<a routerLink="detail-2">Détails 2</a>
+
+<router-outlet></router-outlet>

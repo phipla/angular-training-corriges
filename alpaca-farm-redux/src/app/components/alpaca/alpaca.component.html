@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col col-sm-12">
+    <div
+      class="alpaca"
+      [routerLink]="['/alpaca', alpaca.id]"
+      [appHighlight]="background"
+      >
+      {{ alpacaId }}
+      {{ alpaca.name | capitalizeFirst }}
+    </div>
+  </div>
+</div>
