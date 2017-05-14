@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Alpaca, AlpacaService } from '../../model';
+import { Alpaca, AlpacaListStore } from '../../model';
 
 import { Validators } from '@angular/forms';
 
@@ -14,13 +14,13 @@ export class AlpacaListComponent {
   alpacas$: Observable<Alpaca[]>;
 
   constructor(
-    private alpacaService: AlpacaService,
+    private alpacaStore: AlpacaListStore,
   ) {
-    this.alpacas$ = this.alpacaService.getAll();
+    this.alpacas$ = this.alpacaStore.getAlpacas();
   }
 
   addAlpaca(name: string) {
-    this.alpacaService.addAlpaca(name);
+    this.alpacaStore.create(new Alpaca(name));
   }
 
   getColor(isEven: boolean) {

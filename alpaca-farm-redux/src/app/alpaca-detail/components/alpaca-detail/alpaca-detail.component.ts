@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { AlpacaService, Alpaca } from '../../../model';
+import { AlpacaListStore, Alpaca } from '../../../model';
 
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
@@ -20,12 +20,12 @@ export class AlpacaDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private alpacaService: AlpacaService
+    private alpacaStore: AlpacaListStore
   ) {
     route.params
       .map(params => +params.id)
       .distinctUntilChanged()
-      .mergeMap(id => this.alpacaService.get(id))
+      .mergeMap(id => this.alpacaStore.getAlpaca(id))
       .subscribe(alpaca => this.alpaca = alpaca);
   }
 

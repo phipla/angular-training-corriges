@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AlpacaService } from './model';
+import { AlpacaListStore } from './model';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +12,10 @@ export class AppComponent implements OnInit {
   title = 'AlpagaWare® AlpagaSoft™';
 
   constructor(
-    alpacaService: AlpacaService
+    alpacaStore: AlpacaListStore
   ) {
     console.log('constructor');
-    alpacaService.retrieve();
+    alpacaStore.retrieve();
   }
 
   ngOnInit(): void {

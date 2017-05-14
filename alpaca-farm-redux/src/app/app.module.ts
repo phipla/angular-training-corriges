@@ -3,6 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { RouterStoreModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { appRoutes } from './app.routes';
+import { appReducer } from './app.reducer';
 
 import { AppComponent } from './app.component';
 import { AlpacaComponent } from './components/alpaca/alpaca.component';
@@ -13,10 +20,8 @@ import { ZeroPaddingPipe } from './pipes/zero-padding.pipe';
 import { AlpacaListComponent } from './components/alpaca-list/alpaca-list.component';
 import { AlpacaDetailModule } from './alpaca-detail';
 
-import { appRoutes } from './app.routes';
-
 import {
-  AlpacaService, AlpacaRepositoryService
+  AlpacaListStore, AlpacaRepositoryService, AlpacaListEffects
 } from './model';
 
 @NgModule({
@@ -35,10 +40,14 @@ import {
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
+    StoreModule.provideStore(appReducer),
+    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    RouterStoreModule.connectRouter(),
+    EffectsModule.run(AlpacaListEffects),
     AlpacaDetailModule,
   ],
   providers: [
-    AlpacaService,
+    AlpacaListStore,
     AlpacaRepositoryService
   ],
   bootstrap: [AppComponent]

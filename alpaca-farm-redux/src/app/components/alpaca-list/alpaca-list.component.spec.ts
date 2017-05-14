@@ -2,7 +2,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlpacaListComponent } from './alpaca-list.component';
-import { AlpacaService, Alpaca } from '../../model';
+import { AlpacaListStore, Alpaca } from '../../model';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -10,11 +10,11 @@ describe('AlpacaListComponent', () => {
   let component: AlpacaListComponent;
   let fixture: ComponentFixture<AlpacaListComponent>;
 
-  let mockAlpacaService: AlpacaService;
+  let mockAlpacaStore: AlpacaListStore;
 
   beforeEach(async(() => {
-    mockAlpacaService = <AlpacaService><any>{
-      getAll() {
+    mockAlpacaStore = <AlpacaListStore><any>{
+      getAlpacas() {
         return Observable.of([new Alpaca('test')]);
       }
     };
@@ -22,7 +22,7 @@ describe('AlpacaListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AlpacaListComponent ],
       providers: [
-        { provide: AlpacaService, useValue: mockAlpacaService }
+        { provide: AlpacaListStore, useValue: mockAlpacaStore }
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

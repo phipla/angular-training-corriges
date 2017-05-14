@@ -1,23 +1,23 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { AlpacaService } from './model';
+import { AlpacaListStore } from './model';
 
 describe('AppComponent', () => {
-  let alpacaServiceMock: AlpacaService;
+  let alpacaStoreMock: AlpacaListStore;
 
   beforeEach(async(() => {
-    alpacaServiceMock = <AlpacaService>{
+    alpacaStoreMock = <AlpacaListStore>{
       retrieve() {}
     };
-    spyOn(alpacaServiceMock, 'retrieve');
+    spyOn(alpacaStoreMock, 'retrieve');
 
     TestBed.configureTestingModule({
       declarations: [ AppComponent ],
       providers: [
         {
-          provide: AlpacaService,
-          useValue: alpacaServiceMock
+          provide: AlpacaListStore,
+          useValue: alpacaStoreMock
         }
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
@@ -33,7 +33,7 @@ describe('AppComponent', () => {
   it('should call retrieve', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(alpacaServiceMock.retrieve).toHaveBeenCalled();
+    expect(alpacaStoreMock.retrieve).toHaveBeenCalled();
   }));
 
   it(`should have as title 'AlpagaWare® AlpagaSoft™'`, async(() => {
