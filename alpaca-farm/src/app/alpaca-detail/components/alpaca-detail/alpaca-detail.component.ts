@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { AlpacaService, Alpaca } from '../../model';
+import { AlpacaService, Alpaca } from '../../../model';
 
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';

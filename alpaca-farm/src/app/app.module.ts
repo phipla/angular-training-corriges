@@ -11,15 +11,13 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
 import { ZeroPaddingPipe } from './pipes/zero-padding.pipe';
 import { AlpacaListComponent } from './components/alpaca-list/alpaca-list.component';
-import { AlpacaDetailComponent } from './components/alpaca-detail/alpaca-detail.component';
+import { AlpacaDetailModule } from './alpaca-detail';
 
 import { appRoutes } from './app.routes';
 
 import {
   AlpacaService, AlpacaRepositoryService
 } from './model';
-import { AlpacaDetail1Component } from './components/alpaca-detail-1/alpaca-detail-1.component';
-import { AlpacaDetail2Component } from './components/alpaca-detail-2/alpaca-detail-2.component';
 
 @NgModule({
   declarations: [
@@ -29,17 +27,15 @@ import { AlpacaDetail2Component } from './components/alpaca-detail-2/alpaca-deta
     HighlightDirective,
     CapitalizeFirstPipe,
     ZeroPaddingPipe,
-    AlpacaListComponent,
-    AlpacaDetailComponent,
-    AlpacaDetail1Component,
-    AlpacaDetail2Component,
+    AlpacaListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AlpacaDetailModule,
   ],
   providers: [
     AlpacaService,
