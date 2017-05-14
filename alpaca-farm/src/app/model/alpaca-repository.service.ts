@@ -17,34 +17,34 @@ function createAlpaca(data: AlpacaData) {
 
 @Injectable()
 export class AlpacaRepositoryService {
-  private readonly url = 'http://localhost:3000/alpacas';
+  private static readonly url = 'http://localhost:3000/alpacas';
 
   constructor(
     private http: Http
   ) { }
 
   public readAll(): Observable<Alpaca[]> {
-    return this.http.get(this.url)
+    return this.http.get(AlpacaRepositoryService.url)
       .map(response => response.json().map(createAlpaca));
   }
 
   public read(id: number): Observable<Alpaca> {
-    return this.http.get(`${this.url}/${id}`)
+    return this.http.get(`${AlpacaRepositoryService.url}/${id}`)
       .map(data => createAlpaca(data.json()));
   }
 
   public create(alpaca: Alpaca): Observable<Alpaca>  {
-    return this.http.post(this.url, alpaca)
+    return this.http.post(AlpacaRepositoryService.url, alpaca)
       .map(data => createAlpaca(data.json()));
   }
 
   public update(id: number, alpaca: Alpaca): Observable<Alpaca> {
-    return this.http.put(`${this.url}/${id}`, alpaca)
+    return this.http.put(`${AlpacaRepositoryService.url}/${id}`, alpaca)
       .map(data => createAlpaca(data.json()));
   }
 
   public delete(id: number) {
-    return this.http.delete(`${this.url}/${id}`)
+    return this.http.delete(`${AlpacaRepositoryService.url}/${id}`)
       .map(data => createAlpaca(data.json()));
   }
 }

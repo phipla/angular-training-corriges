@@ -34,21 +34,13 @@ export class AlpacaService {
   get(id: number): Observable<Alpaca> {
     return this.observable$
       .map(
-        alpacaArray => alpacaArray.filter(
-          alpaca => alpaca.id === id
-        )[0]
+        alpacaArray => alpacaArray
+          .filter(Boolean)
+          .filter(
+            alpaca => alpaca.id === id
+          )[0]
       );
   }
-
-  // getAlpacas(): Alpaca[] {
-  //   this.alpacaRepositoryService.readAll().subscribe(
-  //     alpacaArray => {
-  //       this.alpacas.length = 0;
-  //       Object.assign(this.alpacas, alpacaArray);
-  //     }
-  //   );
-  //   return this.alpacas;
-  // }
 
   addAlpaca(name: string): void {
     this.alpacaRepositoryService
@@ -60,6 +52,15 @@ export class AlpacaService {
   }
 
   updateAlpaca(index: number, newAlpaca: Alpaca) {
-    this.alpacas[index] = newAlpaca;
+    this.alpacaRepositoryService
+      .update(index, newAlpaca)
+      .subscribe(updatedAlpaca => {
+        this.alpacas = this.alpacas.map(
+          alpaca => alpaca.id === updatedAlpaca.id
+            ? updatedAlpaca
+            : alpaca
+          );
+        this.observable$.next(this.alpacas);
+      });
   }
 }
